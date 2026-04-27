@@ -1,0 +1,322 @@
+<html> 
+<head> 
+<style> 
+#holder { display : flex; 
+flex-direction : row; 
+background-color : blue; 
+flex-wrap: wrap; 
+justify-content : space-around , space-between; } 
+#holder >div { background-color:white; 
+margin :10px; border :9px; } </style></head> 
+
+<body> 
+<font size="64"><b><marquee behavior ="scroll" direction = "up"> DATA WAREHOUSE AND DATA MINING , DBMS </marquee></b></font><br>
+
+<h2> 
+<nav> 
+<a href="C:\Users\Admin\Downloads\dd.html#dbms"> DBMS </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#spatial">SPATIAL DATABASES </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#outliers"> OUTLIERS ANALYSIS </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#accuracy"> CLASSIFICATION ACURACY </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#ETL"> ETL </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#distance"> DISTANCE BASED ALGORITHMS </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#attributes"> ATTRIBUTES </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#discretization"> DATA DISCRETIZATION  </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#dwh"> DATA WAREHOUSE </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#olap"> OLAP </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#datamining"> DATA MINING </a>| 
+<a href="C:\Users\Admin\Downloads\dd.html#decision trees"> DECISION  TREES </a> 
+</nav></h2><br> 
+<br> 
+<div id ="holder"> 
+<div> 
+<section id ="dbms"> 
+Differences between a database and file processing system : <br> 
+<table width ="60%" border ="1"> 
+<thead><tr><th> 
+Database </th><th> 	File processing </th></tr></thead> 
+
+
+<tbody><tr><td> 
+
+Data and processed data or information is stored consolidated in centralized storage </td><td> 	Data is not consolidated and kept separately in individual files </td></tr> 
+<tr><td> 
+Data can be redundant and normalization occurs </td><td> 	Redundant data is not removed by normalization </td></tr> 
+
+<tr><td>
+Provides multiple views of data to different users </td><td> 	Unlike </td></tr> 
+<tr><td> 
+Provides multiple users access to data </td><td> 	Unlike </td></tr> 
+</tbody> 
+</table> 
+
+
+Loss less join decomposition of a rel. schema<br><br> 
+ we have 2 rels r1 and r2 such that for all attributes in r1 and r2 we have r1 u r2 ->  r1 and r1   u   r2 -> 2 holding true .<br> 
+ dependency preservation occurs herein <br><br> 
+<ol type ="1"> 
+<li> 
+
+Data independence --- ability to modify schema in one level without affecting schema definition in next higher level of database , follows from data abstraction  , attribute inheritance and polymorphism 
+Physical data independence is ability to modify physical schema without causing application programs to re written <br>
+Logical data independence is ability to modify logical schema without causing application programs to rewrite <br> 
+Logical data independence is difficult to achieve as the application programs are heavily dependent on logical structure of data they access </li> 
+
+<li> 
+
+Existence dependency – there’s a rel schema r where for all attributes in r, the functional dependency is x--->  y s.t if operationally y is deleted so is x.<br> 
+ y is dominant entity and x is subordinate entity . dependency preservation occurs herein</li> 
+<li> 
+
+The closure of a set of functional dependencies is the set of all functional dependencies logically implied by it </li> 
+<li> 
+
+A strong entity is entity set whose attributes form a primary key <br> 
+A weak entity is entity set whose attributes do not forms a primary key </li> 
+<li> 
+
+
+Types of functional dependencies: <br><br> 
+<table width ="60%" border ="1"> 
+<tr><td> 
+Full functional dependency </td><td>	All non key attributes are wholly dependent on the key attribute </td></tr> 
+
+<tr><td> 
+
+Partial functional dependency </td><td> 	Some non key attributes are dependent  on  the key attribute and remaining non key attributes are dependent<br> 
+  on the key attribute and on some other non key attributes </td></tr> 
+
+<tr><td>
+
+Transitive dependency </td><td>	Attributes in the key col of 1 rel correspond to the key attributes in col of another rel </td></tr> 
+
+
+<tr><td>
+
+Multi valued dependency </td><td>	In 4NF </td></tr> 
+<tr><td> 
+
+Join dependency </td><td>	In 5NF </td></tr></table> 
+
+
+</li> 
+<li> 
+
+ 
+The removal  of data redundancy from tables / rels is called as normalization <br> 
+While 1nf has redundant data that is removed to some extent in 2nf <br> 
+still higher nf is BCNF  that defines super keys , all rels in 3NF  are in  BCNF  though the reverse is not always holding good . <br> 
+there ‘s a rel schema r where for all functional dependencies f on r , can find a < - r and b < - r s.t   a -> b is a trivial dependency in f+ ,<br> 
+ s.t at least one of foll. Is true : <br>
+a-> b is a trivial dependency in r <br>
+a is a super key to r <br><br> 
+
+3NF  defines candidate key values , transitive dependencies . there ‘s a rel r where for all functional dependencies f on r , can find a < - r and b <-- - r s.t  <br> 
+  a -> b is a trivial dependency In r , s.t at least one of foll is true : <br>
+a -b is a trivial dependency in r <br>
+a is a super key to r <br> 
+can find extraneous attribute in [b-a], that is contained in a candidate key for r<br><br> 
+ 
+4NF  defines multi valued dependency<br> 
+5NF  defines join dependencies <br></li> 
+<li> 
+
+Where a database is to be recovered from hd crash we use check pt method of log – recovery . a check –pt is a special log record , the main sequence in this recovery : 
+Output onto stable storage all log records residing in main memory <br>
+output all modified buffer blocks onto disk <br>
+output onto stable storage  a log record check pt<br> 
+No database modifications can occur where a check pt in progress <br> 
+we suppose that a hd crash occurs where a transaction executing . the log is consulted backwds till sees the transaction – commit ,<br> 
+ log is still consulted backwds till sees the check pt , log is still consulted backwds till sees the transaction start --- that identifies the transaction  . undo or redo operations can be performed on this transaction and any others 
+For concurrent transaction processing fuzzy check pt is used <br></li> 
+
+<li> 
+
+A transaction is a unit of program execution that accesses and or possibly updates various data items . the Acid properties of a transaction are : <br> 
+Atomicity --- either transaction  executes in entirety or none executes at all<br>  
+Consistency --- state of database remains same both before & after transaction  despite system changes<br>  
+Isolation--- despite concurrent execution of transactions each transaction proceeds independently of others despite system changes <br> 
+Durability ---- any modifications made to database as a result of transaction persist even if there are system changes <br> 
+e.gs we have a schedule involving 2 accts a and b, the initial values in  a and b are $1000 and $ 2000 .<br> 
+<br> 
+ a transaction occurs that transfers $ 50 from a -b  as a result final values in a and b becomes $ 950 and $ 2050 . <br> 
+clearly a consistent state as sum a +b is preserved both before & after transaction. Now we suppose that a hd crash occurs after write – a <br> 
+committed but before write – b committed , so, now the final values in  a and b becomes $ 950 and $ 2000 clearly inconsistent state <br> 
+as sum a +b is no longer preserved both before & after transaction . even if system crash did not occurs and transaction proceeded to completion , <br> 
+this inconsistent state would not have been visible except during occurrence of transaction. <br> 
+This highlights Atomicity . isolation is preserved . durability is preserved through recovery mgmt.. component of transactions <br><br> </li> 
+</ol> 
+</section> 
+</div> 
+
+
+
+<div> 
+<section id ="spatial"> 
+	Spatial databases and text databases : spatial databases are derived from geo-spatial consortium and used to draw<br> 
+ 3d geometric shapes, add onto or modify existing 3d geometric shapes, observer re_ and endowed with 3d spatial indexes <br><br>
+Text databases are available in word and texts and respond to Ad hoc queries<br></section> 
+</div> 
+
+<div> 
+<section id="outliers"> 
+	Where the data has outliers decision tree induction is used and binary trees are subjected to pruning to off –set<br> 
+ this kind of data in pre or post pruning , wherein post pruned trees are a reliable<br> 
+ e.g 
+A separate set of tuples cannot be used to detect outliers as does not deal with training samples and does not address over fitted data <br> 
+
+Outliers analysis can include clustering or regression and clustering is preferred than regression testing <br><br></section> 
+</div> 
+
+
+<div> 
+<section id="accuracy"> 
+	Classification accuracy is determined as ratio of correct nos of test cases to sum of all test cases . <br> 
+we can also define accuracy as ratio of true + to sum of true + , true -, false + , false -. <br>
+Training set is subset that trains a existing model <br>
+test set is subset that tests a trained model <br>
+Precision = true + / true + + false – <br>
+Sensitivity = true + / true + + false + <br>
+F1 score = precision x sensitivity /1 + precision + sensitivity <br><br> 
+<a target="_blank" href="https://www.linkedin.com/pulse/understanding-accuracy-score-metrics-limitations-data-akshay-w/"><img src="https://media.licdn.com/dms/image/v2/D4D12AQHkePzqqjdNEA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1685120095162?e=2147483647&v=beta&t=VmiOT_yLWa-QlNdrs9C6oWQBqyHKc3vJGf1gMNxcLw8" alt="g" width="300" height="300"></a> 
+</section> 
+</div> 
+
+<div> 
+<section id ="ETL"> 
+	ETL  or extract – transform – load is imp pre processing in data staging and data acquisition components of a data warehouse [dwh] and data mining . <br> 
+enunciation to ETL  is data cleaning that entails noise removal.the data is then extracted from dwh -->  a database . extracted data is transformed.<br> 
+during load of data , the dwh is essentially off line . 3 types of load include --- initial, incremental loads and full refresh .<br> 
+ incremental load where changes reflected increment wise and initial load , where all tables get a full refresh <br><br> 
+</section> 
+</div> 
+
+
+<div> 
+<section id ="distance">
+<table width ="60%" border="1"> 
+<tr><td>  
+Minkowski distance---- hybrid distance in  N
+ Vectored normal space and combines Euclidean distance and Manhatan distance </td></tr> 
+<tr><td> 
+
+Euclidean distance--- linear distance between x1 , y1 and x2 , y2 </td></tr> 
+
+<tr><td> 
+
+
+Manhattan distance --- linear distance between x1, y1 and x2 , y2 at right angles </td></tr></table> 
+</section> 
+</div> 
+
+
+<div> 
+<section id="attributes"><ol type="1"><li>  
+	Nominal attributes ---- data order is not imp though imp is difference in data intervals e.gs blood collection units</li><li>  
+	Ordinal attributes ---- data order is imp though not imp is difference  in data intervals e.gs socio – economic status </li><li> 
+	Interval attributes ---- imp is data order + difference in  data intervals </li><li> 
+	Ratio attributes ---- data order is imp , diference in data intervals and a 0.0 where 0.0 = no data e.gs concentrations , enzymes , temperatures in kelvin </li></ol> 
+<br></section></div>
+
+
+<div> 
+<section id ="discretization"> 
+	Data discretization deals with a continuous range of attributes in splitting , merging or concept hierarchy that provides a hierarchy of attributes ,<br> 
+ used in dimensional data reduction , data granularity levels <br><br> 
+</section></div> 
+
+
+<div> 
+<section id ="dwh"> 
+	A dwh has a 3 – tier layered architecture that has following layers : bottom layer – centralized RDBMS  servers and MDDBMS <br> 
+ --- parallel processing , improved scalability , middle layer --- olap servers , top layer ---- user programs that interact with olap servers<br><br> 
+ 
+	Components of A dwh : <br><ol type="1"><li> 
+	Centralized RDBMS  servers+ MDDBMS </li><li> 
+	Meta data</li><li>  
+	Query & optimization tools --- optimize business queries </li><li> 
+	ETL</li><li>
+	Dwh bus architecture </li><li> 
+	Data marts</li></ol> 
+<br><br> 
+</section></div> 
+
+
+
+<div> 
+<section id="olap"> 
+	OLAP  --- query + analysis ---- faster indexing of precomputed summarized data ---- de normalized tables ---- historical data ----- operational intelligence -<br> 
+--- slice + dice data----- roll up data , drill down ----- olap servers --- rolap and molap, rolap scalable , flexible than molap <br> 
+----- olap e.gs ----- Erwin, cognos , power builder , informatica --- olap in conformity of FASMI  principles <br><br> 
+
+	Olap  servers ---- rolap, molap, holap. Rolap more scalable less flexible than molap. Molap where if no of dimensions of data cubes >3 <br> 
+are poly cubes and storage In array – multi – dimensional storage search engines .<br> 
+ molap less scalable more flexible than rolap. Holap includes greater scalability of rolap + greater flexibility of molap servers <br> 
+
+	OLAP  operations on multi – dimensional databases include: <br> 
+<table width ="60%" border ="1"> 
+<tr><td> 
+Roll up </td><td> 	From low -->  high level abstraction in generalization </td></tr><tr><td> 
+
+Drill down </td><td> 	From high -->  low level abstraction in  specialization </td></tr> 
+<tr><td> 
+
+Slice and dice </td><td> 	Performs projection operations on dimensions of data cubes </td></tr> 
+<tr><td> 
+
+Pivot </td><td> 	Rotate and cross – tabulate data </td></tr> 
+<tr><td colspan ="2"> 
+
+Sort data , select nominal attributes</td></tr></table> 
+</section></div> 
+
+
+<div> 
+<section id="datamining"> 
+1.	Data characterization ---- target attributes of a data sample / population <br><br> 
+2.	Association rule mining --- finds frequent patterns + correlated data and uses support endowed with a support count ,<br>  confidence where antecedent follows<br> 
+ consequent and general measure lift , that finds rule interestingness , 0 <lift <1.<br> 
+ All strong Association rules are not interesting and correlation does not imply causation. Apriori property => mean of sum of sequential patterns smaller than <br> 
+sequential subpatterns .Apriori algorithm uses join + prune , where in join ,links each of k +1 items from k data to itself , in prune , iterates in k no of passes<br><br> 
+ 
+3.	Classification ---- deals with discrete unordered data & causes grouping of similar data . unlike eager classifiers lazy classification = unsupervised learning<br> 
+ where target attributes or end result not explicit . unlike eager type lazy classifiers deal with complex data .<br> 
+ e.gs of eager classifiers ---- decision trees , Bayesian e.gs of lazy classifiers – clustering , CBR <br><br> 
+
+4.	Regression --- past e.gs , linear regression finds a st line between 1 predictor & 1 response variable and non linear regression ---<br> 
+ a quadratic equation between 2 or more predictors and 1 response variables<br><br> 
+
+5.	Clustering --- A hierarchical data decomposition  , can be agglomerative or divisive or k – means classification that deal with only labeled data <br><br> 
+6.	Outliers analysis ---- clustering preferred than regression<br><br> 
+</section> 
+</div> 
+
+
+<div> 
+<section id="decision trees"> 
+<figure> 
+<figcaption><a target="_blank" href="https://www.geeksforgeeks.org/machine-learning/decision-tree/">https://www.geeksforgeeks.org/machine-learning/decision-tree/</a></figcaption> 
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250107141217134593/Decision-Tree.webp" alt="g" width="300" height="300"> 
+</figure> 
+</section> 
+</div> 
+</div> 
+<br><br> 
+<footer> 
+<a target="_blank" href="mailTo:ratulxx@gmail.com">ratulxx@gmail.com</a><br></footer> 
+<br></body> 
+</html> 
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+ 
+
